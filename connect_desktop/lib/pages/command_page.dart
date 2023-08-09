@@ -7,9 +7,9 @@ class CommandPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPageTemplate(
+    return const AppPageTemplate(
       title: '快捷指令',
-      child: Column(),
+      children: [],
     );
   }
 }

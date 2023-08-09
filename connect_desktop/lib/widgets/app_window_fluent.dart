@@ -1,20 +1,19 @@
 import 'package:bitsdojo_window/bitsdojo_window.dart';
 import 'package:connect_desktop/common/color_util.dart';
 import 'package:connect_desktop/router/app_router.dart';
-import 'package:connect_desktop/style/app_theme.dart';
 import 'package:connect_desktop/widgets/window_button_bar.dart';
 import 'package:fluent_ui/fluent_ui.dart' hide Colors;
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
-class AppNavView extends StatelessWidget {
-  const AppNavView({super.key});
+/// Fluent样式的窗口
+class AppWindowFluent extends StatelessWidget {
+  const AppWindowFluent({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var currentPage = 0.obs;
+    var currentPage = 4.obs;
 
     return Obx(
       () => NavigationView(
@@ -23,11 +22,17 @@ class AppNavView extends StatelessWidget {
           child: child,
         ),
         appBar: NavigationAppBar(
-          leading: Image.asset(
-            'assets/images/launcher_icon_32.png',
-            width: 20,
-            height: 20,
-          ).marginOnly(left: 0),
+          automaticallyImplyLeading: false,
+          title: Row(
+            children: [
+              Image.asset(
+                'assets/images/app_icon_32.png',
+                width: 20,
+                height: 20,
+              ).marginOnly(left: 2, right: 13),
+              const Text('Connect'),
+            ],
+          ),
           actions: WindowTitleBarBox(
             child: Row(
               children: [
@@ -39,12 +44,12 @@ class AppNavView extends StatelessWidget {
         ),
         pane: NavigationPane(
           selected: currentPage.value,
+          onChanged: (index) => currentPage.value = index,
           indicator: StickyNavigationIndicator(
-            color: ColorUtil.hex('#fb470a'),
+            color: ColorUtil.hex('#4c5f6b'),
             curve: Curves.fastOutSlowIn,
             duration: const Duration(milliseconds: 50),
           ),
-          onChanged: (index) => currentPage.value = index,
           size: const NavigationPaneSize(openMaxWidth: 200),
           displayMode: PaneDisplayMode.auto,
           items: AppRouter.paneItems,
@@ -82,9 +87,9 @@ class StatusTag extends StatelessWidget {
       ),
       child: Row(
         children: [
-          SpinKitDoubleBounce(
+          const SpinKitDoubleBounce(
             color: Colors.green,
-            duration: const Duration(seconds: 5),
+            duration: Duration(seconds: 5),
             size: 8,
           ),
           Text(

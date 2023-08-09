@@ -6,9 +6,9 @@ class LabPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPageTemplate(
+    return const AppPageTemplate(
       title: '实验室',
-      child: Container(),
+      children: [],
     );
   }
 }

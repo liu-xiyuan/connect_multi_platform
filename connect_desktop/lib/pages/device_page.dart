@@ -8,9 +8,9 @@ class DevicePage extends GetView<DeviceController> {
 
   @override
   Widget build(BuildContext context) {
-    return AppPageTemplate(
+    return const AppPageTemplate(
       title: '设备',
-      child: Container(),
+      children: [],
     );
   }
 }

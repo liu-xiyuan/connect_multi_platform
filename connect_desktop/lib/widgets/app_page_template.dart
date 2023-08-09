@@ -1,32 +1,43 @@
 import 'package:connect_desktop/style/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class AppPageTemplate extends StatelessWidget {
   const AppPageTemplate({
     super.key,
     required this.title,
-    required this.child,
+    required this.children,
   });
 
   final String title;
-  final Widget child;
+  final List<Widget> children;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white10,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: AppTheme.data.typography.title,
-          ),
-          Expanded(child: child),
-        ],
-      ).paddingSymmetric(horizontal: 35, vertical: 30),
+      backgroundColor: Colors.transparent,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 30),
+            children: [
+              Text(
+                title,
+                style: AppTheme.fluent.typography.title,
+              ).marginOnly(bottom: 20),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: children,
+              ).marginOnly(
+                right: constraints.maxWidth < 1000
+                    ? 0
+                    : constraints.maxWidth - 1000,
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
